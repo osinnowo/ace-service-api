@@ -17,6 +17,6 @@ public class ItemController {
 
     @GetMapping
     public ResponseEntity getItems() {
-        return ResponseEntity.ok(BaseResponse.ok(service.getItems()));
+        return BaseResponse.okResponse(service.getItems());
     }
 }
