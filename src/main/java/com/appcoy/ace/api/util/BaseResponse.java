@@ -1,6 +1,13 @@
 package com.appcoy.ace.api.util;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.Accessors;
 import org.springframework.http.ResponseEntity;
 
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Accessors(fluent = true)
 public class BaseResponse<T>{
     private boolean status;
     private String message;
@@ -12,12 +19,6 @@ public class BaseResponse<T>{
     static class BaseResponseMessage {
         public static final String SUCCESS = "Successful";
         public static final String UNSUCCESSFUL = "Unsuccessful";
-    }
-
-    private BaseResponse(boolean status, String message, T data) {
-        this.status = status;
-        this.message = message;
-        this.data = data;
     }
 
     public static<T> BaseResponse ok(String message) {
@@ -36,15 +37,5 @@ public class BaseResponse<T>{
 
     public static<T> ResponseEntity<BaseResponse<T>> okResponse(String message) {
         return ResponseEntity.ok(ok(message));
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-    public String getMessage() {
-        return message;
-    }
-    public T getData() {
-        return data;
     }
 }
